@@ -26,7 +26,6 @@ http.createServer( async (req, res) => {
       res.end()
       break
   }
-  
 }).listen(port, adress, () => {
   console.log(`Server running at http://${adress}:${port}/`)
 })
