@@ -12,11 +12,9 @@ describe('website', () => {
       const rockElement     = await driver.findElement(By.id('rock'))
       const paperElement    = await driver.findElement(By.id('paper'))
     expect(await scissorsElement.getAttribute('innerHTML')).toEqual('scissors')
-      expect(await rockElement    .getAttribute('innerHTML')).toEqual('rock')
-      expect(await paperElement   .getAttribute('innerHTML')).toEqual('paper')
-   } finally {
-      await driver.quit()
-    }
+    expect(await rockElement    .getAttribute('innerHTML')).toEqual('rock')
+    expect(await paperElement   .getAttribute('innerHTML')).toEqual('paper')
+   } finally { await driver.quit() }
   })
 })
 
@@ -28,8 +26,6 @@ describe('Tony opens page wanting to play R-P-S', () => {
       await driver.findElement(By.id('scissors')).click()
       const outcomeText = await driver.findElement(By.id('outcome')).getAttribute('innerText')
       expect(outcomeText.length > 0).toBe(true)
-    } finally {
-      await driver.quit()
-    }
+    } finally { await driver.quit() }
   })
 })

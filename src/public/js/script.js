@@ -1,20 +1,3 @@
-const ajax = (
-    method, 
-    endpoint, 
-    callback= xhr => console.log(xhr.status), 
-    errorCallback = (xhr) => console.log(xhr.status)
-  ) => {
-  const xhr = new XMLHttpRequest()
-  xhr.open(method, endpoint)
-  xhr.send()
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState === 4) {
-      if(xhr.status === 200) callback(xhr)
-      else errorCallback(xhr) 
-    }  
-  }
-}
-
 const updateScore = outcome => {
   if(outcome === 'win') {
     const playerScoreElement = document.getElementById('player-score')
@@ -40,10 +23,10 @@ const requestOpponent = playerWeapon => ajax(
   }
 ) 
 
-const fight = rules => (p1, p2) => {
-  return (p1 === p2) ? 'draw' : (rules[p1].includes(p2) ? 'win' : 'lose') 
-
-}
+const fight = rules => (p1, p2) => (
+  (p1 === p2) ? 'draw' : 
+    (rules[p1].includes(p2) ? 'win' : 'lose') 
+)
 
 const rules = {
   rock:     ['scissors'],

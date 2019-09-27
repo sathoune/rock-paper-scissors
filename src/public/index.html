@@ -3,21 +3,25 @@
   <head>
     <meta charset='UTF-8'>
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="js/ajax.js"></script>
+    <script src="js/script.js"></script>
   </head>
   <body>
-    <div id="score-board">
-      <p> 
-        <span id="player-score">0</span>
-        :
-        <span id="opponent-score">0</span>
-      </p>
-      <p id="outcome"></p>
-    </div>
-    <div id="button-conteiner">
-        <button id="rock"     onclick="requestOpponent('rock')"     >rock</button>
-        <button id="paper"    onclick="requestOpponent('paper')"    >paper</button>
-        <button id="scissors" onclick="requestOpponent('scissors')" >scissors</button>    
-    </div>
-    <script src="js/script.js"></script>
+    <main class="flex-column-center">
+      <div class="flex-column-center" id="score-board">
+          <p class="scores"> 
+            <span id="player-score">0</span>
+            :
+            <span id="opponent-score">0</span>
+          </p>
+          <p id="outcome"></p>
+        </div>
+        <div id="button-conteiner">
+            <button id="rock"     onclick="requestOpponent('rock')"     >rock</button>
+            <button id="paper"    onclick="requestOpponent('paper')"    >paper</button>
+            <button id="scissors" onclick="requestOpponent('scissors')" >scissors</button>    
+        </div>
+    </main>
   </body>
 </html>
