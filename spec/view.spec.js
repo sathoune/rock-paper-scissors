@@ -21,3 +21,15 @@ describe('website', () => {
     }
   })
 })
+
+describe('Tony opens page wanting to play R-P-S', () => {
+  it('he chooses scissors', async () => {
+    const driver = await new Builder().forBrowser('chrome').build()
+    try {
+      await driver.get(baseUrl)
+      console.log(await driver.findElement(By.id('scissors')).click())
+    } finally {
+      await driver.quit()
+    }
+  })
+})
