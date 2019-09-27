@@ -1,11 +1,11 @@
 const Axios = require("axios")
-
+const {weapons} = require('../src/selectWeapon.js')
 const baseUrl = 'http://127.0.0.1:3000/'
 
-describe('/random', () => {
+describe('/opponent', () => {
   it('returns rock, paper or scissors', async () => {
-    const res = await Axios.get(baseUrl + 'random')
-    expect(res.data.opponent).toBe('rock' || 'paper' || 'scissors')
+    const res = await Axios.get(baseUrl + 'opponent')
+    expect(weapons.includes(res.data.opponent)).toBe(true)
   })
 })
 
@@ -23,7 +23,7 @@ describe('any other', () => {
     it('returns 404 error', async () => {
       const res = await Axios.get(baseUrl + site).catch( e => e.response)
       expect(res.status).toBe(404)
-      expect(res.data).toBe('Route not found')
+      expect(res.data).toBe(`Route for /${site} not found`)
     })
   })
 })

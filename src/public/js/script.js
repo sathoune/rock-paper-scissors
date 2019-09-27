@@ -14,7 +14,7 @@ const updateMessage = (outcome, weapon0, weapon1) => {
 
 const requestOpponent = playerWeapon => ajax(
   'GET', 
-  'random', 
+  'opponent', 
   xhr => {
     const data = JSON.parse(xhr.responseText)
     const outcome = fight(rules)(playerWeapon, data.opponent)
