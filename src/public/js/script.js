@@ -33,3 +33,8 @@ const rules = {
   paper:    ['rock'],
   scissors: ['paper']
 }
+
+module.exports = {
+  rules: rules,
+  fight: fight
+}

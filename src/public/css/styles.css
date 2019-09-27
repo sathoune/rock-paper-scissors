@@ -6,3 +6,8 @@
 .scores {
   font-size: 5em;
 }
+button {
+  outline: none;
+  background: white;
+  padding: 1em;
+}

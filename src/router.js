@@ -29,6 +29,10 @@ const renderMain = (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' })
   res.end(indexPage, 'utf-8')
 }
+const redirectTo = page => (req, res) => {
+  res.writeHead(301, {Location: page})
+  res.end()
+}
 
 const createOpponent = (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'})
@@ -38,8 +42,7 @@ const createOpponent = (req, res) => {
 }
 
 const pathNotFound = (req, res, path) => {
-  res.writeHead(404, {'Content-Type': 'text/plain'})
-  res.end(`Route for ${path} not found`)
+  redirectTo('/')(req, res)
 }
 
 const sendFile = (req, res, pathname) => {
