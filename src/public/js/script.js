@@ -8,33 +8,18 @@ const updateScore = outcome => {
   }
 }
 
-const updateMessage = (outcome, weapon0, weapon1) => {
-  document.getElementById('outcome').innerText = `Player ${outcome}s with ${weapon0} against ${weapon1}`
+const updateMessage = ({result, playerWeapon, opponentWeapon}) => {
+  document.getElementById('outcome').innerText = `Player ${result}s with ${playerWeapon} against ${opponentWeapon}`
 }
 
-const requestOpponent = playerWeapon => ajax(
-  'GET', 
-  'opponent', 
-  xhr => {
-    const data = JSON.parse(xhr.responseText)
-    const outcome = fight(rules)(playerWeapon, data.opponent)
-    updateScore(outcome)
-    updateMessage(outcome, playerWeapon, data.opponent)
-  }
-) 
-
-const fight = rules => (p1, p2) => (
-  (p1 === p2) ? 'draw' : 
-    (rules[p1].includes(p2) ? 'win' : 'lose') 
-)
-
-const rules = {
-  rock:     ['scissors'],
-  paper:    ['rock'],
-  scissors: ['paper']
-}
-
-module.exports = {
-  rules: rules,
-  fight: fight
-}
+const requestFight = playerWeapon => ajax({
+  method: 'POST', 
+  url: 'fight', 
+  payload: JSON.stringify({weapon: playerWeapon}),
+  contentType: 'application/json',
+  callback: xhr => {
+    const {fight} = JSON.parse(xhr.responseText)
+    updateScore(fight.result)
+    updateMessage(fight)
+  },
+}) 

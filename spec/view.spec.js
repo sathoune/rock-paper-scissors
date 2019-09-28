@@ -2,13 +2,13 @@ const {Builder, By} = require('selenium-webdriver')
 const chrome = require('chromedriver')
 
 const baseUrl = 'http://127.0.0.1:3000/'
-describe('Tony would like to play a Rock-Paper-Scissors game, so he visits this original site', () => {
+describe('Tony would like to play a Rock-Paper-Scissors game', () => {
   const driver = new Builder().forBrowser('chrome').build()
   afterAll( async () => {
     await driver.quit()
   })
-  describe('', () => {
-  
+
+  describe('Tony visits this magnificent site', () => {
     beforeAll( async () => {
       await driver.get(baseUrl)
    })
@@ -30,7 +30,7 @@ describe('Tony would like to play a Rock-Paper-Scissors game, so he visits this 
   })
   
   describe('but he made a horrible mistake typing the main page adress', () => {
-    it('redirects him to main page', async () => {
+    it('however he ends up at the main page', async () => {
       await driver.get(baseUrl + '../server.js')
       const url = await driver.getCurrentUrl()
       expect(url).toEqual(baseUrl)  

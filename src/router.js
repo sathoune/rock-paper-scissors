@@ -2,18 +2,19 @@ const fs        = require('fs')
 const path      = require('path')
 const url       = require('url')
 const mimeTypes = require('./mimeTypes')
-const {selectWeapon} = require('./selectWeapon.js')
+const {resolve, rules, weapons, selectWeapon} = require('./fight')
 
 const router = async (req, res) => {
   const parsedUrl = url.parse(req.url)
   const sanitizedPath = path.normalize(parsedUrl.pathname).replace(/^(\.\.[\/\\])+/, '')
+  req.body = req.headers.data
   switch(sanitizedPath) {
     case '/': 
       renderMain(req, res)
       break
 
-    case '/opponent' :
-      createOpponent(req, res)
+    case '/fight':
+      fight(req, res)
       break
 
     default: 
@@ -34,11 +35,36 @@ const redirectTo = page => (req, res) => {
   res.end()
 }
 
-const createOpponent = (req, res) => {
-  res.writeHead(200, {'Content-Type': 'application/json'})
-  res.end(JSON.stringify({
-    opponent: selectWeapon()
-  }))
+const fight = (req, res) => {
+  if(req.headers['content-type'] === 'application/json') {
+    const body = JSON.parse(req.body)
+    if(body.weapon){
+      const playerWeapon = body.weapon
+      if(weapons.includes(playerWeapon)){
+        const opponentWeapon = selectWeapon()
+        const result = resolve(rules)(playerWeapon, opponentWeapon)
+        res.writeHead(200, {'Content-Type': 'application/json'})
+        res.end(JSON.stringify({
+          fight: {
+            playerWeapon,
+            opponentWeapon,
+            result
+          }
+        }))
+      } else {
+        res.writeHead(400)
+        res.send('Illegal weapon')
+      }
+    } else {
+     res.writeHead(400)
+     res.send('No content') 
+    }
+  } else {
+    res.writeHead(400)  
+    res.end('Wrong type of content')
+  }
+
+
 }
 
 const pathNotFound = (req, res, path) => {
