@@ -15,11 +15,11 @@ const rules = {
   scissors: ['paper']
 }
 
-
 module.exports = {
   weapons: weapons, 
   rules: rules,
   resolve: resolve,
   selectRandomFromArray: selectRandomFromArray,
-  selectWeapon: selectRandomFromArray(weapons)
+  selectWeapon: selectRandomFromArray(weapons),
+  resolveRPS: resolve(rules)
 }
