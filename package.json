@@ -2,7 +2,7 @@
   "name": "rock-paper-scissors",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "node_modules/jasmine/bin/jasmine.js spec/*.spec.js",
     "test-one": "node_modules/jasmine/bin/jasmine.js",
@@ -17,8 +17,5 @@
     "jasmine": "^3.5.0",
     "nodemon": "^1.19.2",
     "selenium-webdriver": "^4.0.0-alpha.5"
-  },
-  "engines": {
-    "node": "10.x"
   }
 }
