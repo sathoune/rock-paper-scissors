@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "node_modules/jasmine/bin/jasmine.js spec/*.spec.js",
+    "test-one": "node_modules/jasmine/bin/jasmine.js",
     "start": "node src/server.js",
     "start-dev": "node_modules/nodemon/bin/nodemon.js src/server.js"
   },
