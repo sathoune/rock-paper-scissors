@@ -9,7 +9,11 @@ const updateScore = outcome => {
 }
 
 const updateMessage = ({result, playerWeapon, opponentWeapon}) => {
-  document.getElementById('outcome').innerText = `Player ${result}s with ${playerWeapon} against ${opponentWeapon}`
+  document.getElementById('outcome').innerHTML = `
+  Player ${result}s with 
+  <span style="color: blue;">${playerWeapon}</span>
+   against 
+  <span style="color: red;">${opponentWeapon}</span>`
 }
 
 const requestFight = playerWeapon => ajax({
