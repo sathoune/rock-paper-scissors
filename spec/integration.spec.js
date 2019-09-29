@@ -1,6 +1,6 @@
 const Axios = require("axios")
-const {weapons} = require('../src/fight')
-const baseUrl = 'http://127.0.0.1:3000/'
+const {weapons} = require('../src/constants')
+const baseUrl = process.env.TESTSERVER || 'http://127.0.0.1:3000/'
 
 const POST = 'POST'
 const fightUrl = baseUrl + 'fight'
@@ -8,6 +8,7 @@ const fightUrl = baseUrl + 'fight'
 describe('/fight', () => {
   it('Given player\'s weapon responds with fight results', async () => {
     const weapon = 'rock'
+    
     const res = await Axios({
       url: fightUrl, 
       method: POST,
@@ -26,6 +27,7 @@ describe('/fight', () => {
 
   it('allows only "application/json" content', async () => {
     const weapon = 'paper'
+
     await Axios({
       url: fightUrl,
       method: POST,
@@ -40,6 +42,7 @@ describe('/fight', () => {
   })
 
   it('requires proper object format', async () => {
+
     await Axios({
       url: fightUrl,
       method: POST,
@@ -54,6 +57,7 @@ describe('/fight', () => {
   })
 
   it('requires player to send their weapon of choice', async () => {
+
     await Axios({
       url: fightUrl,
       method: POST,
@@ -71,6 +75,7 @@ describe('/fight', () => {
 
   it('requires player to file a legal weapon', async () => {
     const wrongWeapon = 'morgernstern'
+
     await Axios({
       url: fightUrl,
       method: POST,
@@ -88,7 +93,7 @@ describe('/fight', () => {
 })
 
 describe('/', () => {
-  it('renders a base page', async () => {
+  it('renders a main page', async () => {
     const res = await Axios.get(baseUrl)
     expect(res.headers['content-type']).toBe('text/html')
     expect(res.data.includes('!DOCTYPE html')).toBe(true)

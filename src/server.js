@@ -1,8 +1,11 @@
 const http      = require('http')
-const router    = require('./router')
-const port      = process.env.PORT || 3000
-const adress    = '127.0.0.1'
 
-http.createServer(router).listen(port, adress, () => {
-  console.log(`Server running at http://${adress}:${port}/`)
+const router    = require('./router')
+const PORT      = process.env.PORT || 3000
+const ADDRESS    = process.env.ADDRESS || '127.0.0.1'
+
+const server = http.createServer(router).listen(PORT, ADDRESS, () => {
+  console.log(`Server running at http://${ADDRESS}:${PORT}/`)
 })
+
+module.exports = server

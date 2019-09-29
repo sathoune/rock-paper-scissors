@@ -1,7 +1,8 @@
+require('chromedriver')
 const {Builder, By} = require('selenium-webdriver')
-const chrome = require('chromedriver')
 
-const baseUrl = 'http://127.0.0.1:3000/'
+const baseUrl = process.env.TESTSERVER || 'http://127.0.0.1:3000/'
+
 describe('Tony would like to play a Rock-Paper-Scissors game', () => {
   const driver = new Builder().forBrowser('chrome').build()
   afterAll( async () => {

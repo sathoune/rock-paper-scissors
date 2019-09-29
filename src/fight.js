@@ -1,7 +1,9 @@
-const weapons = ['rock', 'paper', 'scissors']
+const {weapons, rules} = require('./constants')
 
 const selectRandomFromArray = weapons => () => (
-  weapons[Math.floor(Math.random() * weapons.length)]
+  (Array.isArray(weapons)) ? 
+    weapons[Math.floor(Math.random() * weapons.length)] :
+    undefined
 )
 
 const resolve = rules => (p1, p2) => (
@@ -9,15 +11,7 @@ const resolve = rules => (p1, p2) => (
     (rules[p1].includes(p2) ? 'win' : 'lose') 
 )
 
-const rules = {
-  rock:     ['scissors'],
-  paper:    ['rock'],
-  scissors: ['paper']
-}
-
 module.exports = {
-  weapons: weapons, 
-  rules: rules,
   resolve: resolve,
   selectRandomFromArray: selectRandomFromArray,
   selectWeapon: selectRandomFromArray(weapons),

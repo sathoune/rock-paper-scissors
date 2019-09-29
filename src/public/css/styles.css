@@ -1,7 +1,9 @@
 #outcome {
   font-size: 2.5em;
 }
-
+h1 {
+  font-size: 4em;
+}
 .flex-column-center {
   display: flex;
   flex-direction: column;

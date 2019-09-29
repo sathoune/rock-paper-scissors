@@ -1,3 +1,4 @@
+const indexPath = 'html/index.html'
 const mimeTypes = {
   '.ico': 'image/x-icon',
   '.html': 'text/html',
@@ -15,4 +16,16 @@ const mimeTypes = {
   '.ttf': 'aplication/font-sfnt'
 }
 
-module.exports = mimeTypes
+const weapons = ['rock', 'paper', 'scissors']
+const rules = { //array contains elements beaten by weapon represented with keyword
+  rock:     ['scissors'],
+  paper:    ['rock'],
+  scissors: ['paper']
+}
+
+module.exports = {
+  indexPath,
+  mimeTypes,
+  weapons,
+  rules
+}
