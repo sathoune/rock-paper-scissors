@@ -6,7 +6,7 @@ Project preview @: https://rock-paper-scissors1.herokuapp.com/
 How to get this running on Ubuntu:
 Create a folder you would like the project to be in
 * mkdir rock-paper-scissors
-* mv rock-paper-scissors
+* cd rock-paper-scissors
 
 Initialize and pull git repository
 * git init
@@ -14,6 +14,7 @@ Initialize and pull git repository
 
 To run it (given you have node installed)
 * node src/server.js
+at default server will listen at http://localhost:3000
 
 If you would like to run some tests you have to build npm package
 * npm i
